@@ -6,10 +6,10 @@ const HomeScreen = () => {
     <View
       style={{
         flex: 1,
-        justifyContent: 'center',
         alignItems: 'center',
+        margin:16
       }}>
-      <Text>Hello, world!</Text>
+      <Text style={{fontFamily:'UbuntuMono-Bold',fontSize:32}}>Bienvenu</Text>
     </View>
   );
 };
