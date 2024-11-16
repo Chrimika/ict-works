@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react';
-import { View, StyleSheet } from 'react-native';
+import { View, StyleSheet, StatusBar } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import HomeScreen from './screens/Home';
 import { NavigationContainer } from '@react-navigation/native';
 import EventScreen from './screens/Events';
@@ -9,6 +10,7 @@ import MoreScreen from './screens/More';
 import Feather from 'react-native-vector-icons/Feather';
 
 const Tab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 const App = () => {
   useEffect(() => {
@@ -34,7 +36,7 @@ const App = () => {
 
             return (
               <View style={styles.iconContainer}>
-                <Feather name={iconName} size={28} color={color} />
+                <Feather name={iconName} size={18} color={color} />
               </View>
             );
           },
@@ -51,7 +53,13 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      <MyTabs />
+      <StatusBar backgroundColor="#5e17eb" barStyle="light-content" />
+      <Stack.Navigator>
+        {/* Incluez MyTabs comme un écran dans le Stack.Navigator */}
+        <Stack.Screen name="Main" component={MyTabs} options={{ headerShown: false }} />
+        <Stack.Screen name="event" component={EventScreen} options={{ headerShown: false }}/>
+        <Stack.Screen name="more" component={MoreScreen} options={{ headerShown: false }}/>
+      </Stack.Navigator>
     </NavigationContainer>
   );
 };
